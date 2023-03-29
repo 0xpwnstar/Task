@@ -45,7 +45,7 @@ const  HomeScreen = ({ navigation }) => {
     }
 
     const uploadImage = async () => {
-      const fileKey = '571ded9f-f6c8-4ffc-a80f-e175c10900cd'
+      const fileKey = '571ded9f-f6c8-4ffc-a80f-e175c10900cd' //uuid()
       const signedUrlExpireSeconds = 60 * 1500;
 
       const url = await s3.getSignedUrlPromise("putObject", {
