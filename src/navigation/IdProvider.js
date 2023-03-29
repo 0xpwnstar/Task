@@ -6,12 +6,12 @@ export const IdProvider = ({children}) => {
     const [id, setId] = useState(null);
 
     return (
-        <IdContext.IdProvider
+        <IdContext.Provider
         value={{
             id,
             setId
         }}>
             {children}
-        </IdContext.IdProvider>
+        </IdContext.Provider>
     )
 }

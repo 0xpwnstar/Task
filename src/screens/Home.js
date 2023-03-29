@@ -4,7 +4,7 @@ import * as Progress from 'react-native-progress';
 import s3 from '../utils/bucket'
 import styles from '../styles/layer1'
 import Button from '../components/button'
-import {IdContext} from '../navigattion/IdProvider'
+import {IdContext} from '../navigation/IdProvider'
 import {
     View,
     SafeAreaView,
@@ -49,7 +49,7 @@ const  HomeScreen = ({ navigation }) => {
       const signedUrlExpireSeconds = 60 * 1500;
 
       const url = await s3.getSignedUrlPromise("putObject", {
-        Bucket: config.bucket,
+        Bucket: "insta-clone",
         Key: fileKey,
         ContentType: "image/jpeg",
         Expires: signedUrlExpireSeconds,
@@ -69,7 +69,6 @@ const  HomeScreen = ({ navigation }) => {
      console.log('error upload :', error);
     }
     setId(fileKey)
-    setImage(null)
   };
 
   return (

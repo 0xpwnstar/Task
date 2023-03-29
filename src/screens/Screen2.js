@@ -60,9 +60,7 @@ const Screen2 = ({navigation}) => {
             addToExcel()
         }}/>
     <View style = {{flexDirection: 'row-reverse',justifyContent: 'center',marginTop: 50}}>
-        { latitude && longitude &&
     <FormButton buttonTitle='Next' onPress={() => navigation.navigate('Screen3', {longitude, latitude})}/>
-        }
     <FormButton buttonTitle='Back' onPress={() => navigation.navigate('Home')}/>
     </View>
     </View>

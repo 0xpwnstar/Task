@@ -6,7 +6,7 @@ import Screen2 from './src/screens/Screen2';
 import Screen3 from './src/screens/Screen3';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { IdProvider } from '../navigation/IdProvider'
+import { IdProvider } from './src/navigation/IdProvider'
 
 
 const Stack = createNativeStackNavigator();

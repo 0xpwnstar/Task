@@ -3,7 +3,7 @@ import style from '../styles/layer1'
 import {View} from 'react-native'
 import {Image} from 'react-native'
 import s3 from '../utils/bucket'
-import {IdContext} from '../navigattion/IdProvider'
+import {IdContext} from '../navigation/IdProvider'
 
 export default function Picture() {
   const [image, setImage] = useState(null);
