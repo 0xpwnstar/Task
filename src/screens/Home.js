@@ -4,7 +4,7 @@ import * as Progress from 'react-native-progress';
 import s3 from '../utils/bucket'
 import styles from '../styles/layer1'
 import Button from '../components/button'
-
+import {IdContext} from '../navigattion/IdProvider'
 import {
     View,
     SafeAreaView,
@@ -19,9 +19,7 @@ import {
 
 const  HomeScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
-    const [uploading, setUploading] = useState(false);
-    const [transferred, setTransferred] = useState(0);
-    const [url, setUrl] = useState([]);
+    const { id, setId} = useContext(IdContext)
 
     const selectImage = ( ) => {
         const options = {
@@ -47,29 +45,31 @@ const  HomeScreen = ({ navigation }) => {
     }
 
     const uploadImage = async () => {
-    //   const filename = "testing"
-    //   const signedUrlExpireSeconds = 60 * 1500;
+      const fileKey = '571ded9f-f6c8-4ffc-a80f-e175c10900cd'
+      const signedUrlExpireSeconds = 60 * 1500;
 
-    //   const url = await s3.getSignedUrlPromise("putObject", {
-    //     Bucket: config.bucket,
-    //     Key: filename,
-    //     ContentType: "image/jpeg",
-    //     Expires: signedUrlExpireSeconds,
-    //     ACL: 'public-read'
-    //   })
-    //   console.log(url)
-    //   try {
-    //     const res = await fetch(image);
-    //     const body = await res.blob();
-    //     console.log(body)
-    //     const result = await fetch(url, {
-    //       method: 'PUT',
-    //       body: body,
-    //    });
-    //    console.log('result:', result);
-    //   } catch (error) {
-    //  console.log('error upload :', error);
-    // }
+      const url = await s3.getSignedUrlPromise("putObject", {
+        Bucket: config.bucket,
+        Key: fileKey,
+        ContentType: "image/jpeg",
+        Expires: signedUrlExpireSeconds,
+        ACL: 'public-read'
+      })
+      console.log(url)
+      try {
+        const res = await fetch(image);
+        const body = await res.blob();
+        console.log(body)
+        const result = await fetch(url, {
+          method: 'PUT',
+          body: body,
+       });
+       console.log('result:', result);
+      } catch (error) {
+     console.log('error upload :', error);
+    }
+    setId(fileKey)
+    setImage(null)
   };
 
   return (

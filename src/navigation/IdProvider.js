@@ -10,6 +10,8 @@ export const IdProvider = ({children}) => {
         value={{
             id,
             setId
-        }}
+        }}>
+            {children}
+        </IdContext.IdProvider>
     )
 }

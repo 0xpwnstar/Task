@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import style from '../styles/layer1'
 import {View} from 'react-native'
 import {Image} from 'react-native'
 import s3 from '../utils/bucket'
+import {IdContext} from '../navigattion/IdProvider'
 
 export default function Picture() {
   const [image, setImage] = useState(null);
+  const {id} = useContext(IdContext)
+
   const addImage = () =>{
-    var params = {Bucket: 'insta-chaitu', Key: '571ded9f-f6c8-4ffc-a80f-e175c10900cd'};
+    var params = {Bucket: 'insta-chaitu', Key: id};
     var promise = s3.getSignedUrlPromise('getObject', params);
     promise.then(function(url) {
     console.log(url)
